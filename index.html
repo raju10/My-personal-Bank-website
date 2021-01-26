@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <div id="login-area">
+        <h1 class="text-center">Welcome to pionner Bank</h1>
+        <div class="submit-area">
+          <h4>Login</h4>
+
+          <input type="text" class="form-control" placeholder="Email" />
+          <br />
+          <input type="password" class="form-control" placeholder="password" />
+          <br />
+          <button id="login-btn" class="btn btn-success">Enter</button>
+        </div>
+      </div>
+      <div id="transaction-area">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="deposit status">
+              <h4>Deposit</h4>
+              <h1>$ <span id="current-deposit">00</span></h1>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="withdraw status">
+              <h4>Withdraw</h4>
+              <h1>$ 00</h1>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="balance status">
+              <h4>Balance</h4>
+              <h1>$ <span id="current-balance">1240</span></h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="submit-area">
+              <h4>Deposit</h4>
+              <input
+                id="depositAmount"
+                type="text"
+                class="form-control"
+                placeholder="$ amount you want to deposit"
+              />
+              <br />
+              <button id="add-deposit" class="btn btn-success">Deposit</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="submit-area">
+              <h4>Withdraw</h4>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="$ amount you want to withdraw"
+              />
+              <br />
+              <button class="btn btn-success">Withdraw</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // login btn event handler
+      var loginBtn = document.getElementById("login-btn");
+      loginBtn.addEventListener("click", function () {
+        var loginArea = document.getElementById("login-area");
+        loginArea.style.display = "none";
+        var transactionArea = document.getElementById("transaction-area");
+        transactionArea.style.display = "block";
+      });
+      //   deposit btn event handler
+      var addDeposit = document.getElementById("add-deposit");
+      addDeposit.addEventListener("click", function () {
+        var depositAmount = document.getElementById("depositAmount").value;
+
+        depositNumber = parseFloat(depositAmount);
+
+        // var currentDeposit = document.getElementById("current-deposit")
+        //   .innerText;
+        // var currentDepositNumber = parseFloat(currentDeposit);
+
+        // var totalDepositNum = depositNumber + currentDepositNumber;
+
+        // document.getElementById("current-deposit").innerText = totalDepositNum;
+
+        updateSpanTax("current-deposit", depositNumber);
+        updateSpanTax("current-balance", depositNumber);
+
+        var depositAmount = (document.getElementById("depositAmount").value =
+          "");
+      });
+      function updateSpanTax(id, depositNumber) {
+        var carrentBallence = document.getElementById(id).innerText;
+        carrentBallenceNum = parseFloat(carrentBallence);
+
+        var totalBalance = depositNumber + carrentBallenceNum;
+
+        document.getElementById(id).innerText = totalBalance;
+      }
+    </script>
+  </body>
+</html>
