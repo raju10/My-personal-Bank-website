@@ -37,7 +37,7 @@
           <div class="col-md-4">
             <div class="withdraw status">
               <h4>Withdraw</h4>
-              <h1>$ 00</h1>
+              <h1>$ <span id="current-withdraw">00</span></h1>
             </div>
           </div>
           <div class="col-md-4">
@@ -65,12 +65,13 @@
             <div class="submit-area">
               <h4>Withdraw</h4>
               <input
+                id="withdrawAmount"
                 type="text"
                 class="form-control"
                 placeholder="$ amount you want to withdraw"
               />
               <br />
-              <button class="btn btn-success">Withdraw</button>
+              <button id="withdrawBtn" class="btn btn-success">Withdraw</button>
             </div>
           </div>
         </div>
@@ -93,14 +94,6 @@
 
         depositNumber = parseFloat(depositAmount);
 
-        // var currentDeposit = document.getElementById("current-deposit")
-        //   .innerText;
-        // var currentDepositNumber = parseFloat(currentDeposit);
-
-        // var totalDepositNum = depositNumber + currentDepositNumber;
-
-        // document.getElementById("current-deposit").innerText = totalDepositNum;
-
         updateSpanTax("current-deposit", depositNumber);
         updateSpanTax("current-balance", depositNumber);
 
@@ -115,6 +108,38 @@
 
         document.getElementById(id).innerText = totalBalance;
       }
+
+      // withdraw
+      var withdrawBtn = document.getElementById("withdrawBtn");
+      withdrawBtn.addEventListener("click", function () {
+        var withdrawAmount = document.getElementById("withdrawAmount").value;
+        withdrawAmountNum = parseFloat(withdrawAmount);
+
+        var currentWithdraw = document.getElementById("current-withdraw")
+          .innerText;
+        currentWithdrawNum = parseFloat(currentWithdraw);
+
+        totalWithdrawAmount = withdrawAmountNum + currentWithdrawNum;
+
+        var currentWithdraw = (document.getElementById(
+          "current-withdraw"
+        ).innerText = totalWithdrawAmount);
+
+        // /////////
+
+        var currentBalance = document.getElementById("current-balance")
+          .innerText;
+        currentBalanceNum = parseFloat(currentBalance);
+
+        total = -1 * withdrawAmountNum + currentBalanceNum;
+
+        var currentBalance = (document.getElementById(
+          "current-balance"
+        ).innerText = total);
+
+        var withdrawAmount = (document.getElementById("withdrawAmount").value =
+          "");
+      });
     </script>
   </body>
 </html>
