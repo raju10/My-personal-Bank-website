@@ -93,12 +93,15 @@
         var depositAmount = document.getElementById("depositAmount").value;
 
         depositNumber = parseFloat(depositAmount);
+        if (depositNumber < 0) {
+          alert("deposit cannot negative");
+        } else {
+          updateSpanTax("current-deposit", depositNumber);
+          updateSpanTax("current-balance", depositNumber);
 
-        updateSpanTax("current-deposit", depositNumber);
-        updateSpanTax("current-balance", depositNumber);
-
-        var depositAmount = (document.getElementById("depositAmount").value =
-          "");
+          var depositAmount = (document.getElementById("depositAmount").value =
+            "");
+        }
       });
       function updateSpanTax(id, depositNumber) {
         var carrentBallence = document.getElementById(id).innerText;
@@ -114,31 +117,35 @@
       withdrawBtn.addEventListener("click", function () {
         var withdrawAmount = document.getElementById("withdrawAmount").value;
         withdrawAmountNum = parseFloat(withdrawAmount);
+        if (withdrawAmount < 0) {
+          alert("withdraw number cannot be negative");
+        } else {
+          var currentWithdraw = document.getElementById("current-withdraw")
+            .innerText;
+          currentWithdrawNum = parseFloat(currentWithdraw);
 
-        var currentWithdraw = document.getElementById("current-withdraw")
-          .innerText;
-        currentWithdrawNum = parseFloat(currentWithdraw);
+          totalWithdrawAmount = withdrawAmountNum + currentWithdrawNum;
 
-        totalWithdrawAmount = withdrawAmountNum + currentWithdrawNum;
+          var currentWithdraw = (document.getElementById(
+            "current-withdraw"
+          ).innerText = totalWithdrawAmount);
 
-        var currentWithdraw = (document.getElementById(
-          "current-withdraw"
-        ).innerText = totalWithdrawAmount);
+          // /////////
 
-        // /////////
+          var currentBalance = document.getElementById("current-balance")
+            .innerText;
+          currentBalanceNum = parseFloat(currentBalance);
 
-        var currentBalance = document.getElementById("current-balance")
-          .innerText;
-        currentBalanceNum = parseFloat(currentBalance);
+          total = -1 * withdrawAmountNum + currentBalanceNum;
 
-        total = -1 * withdrawAmountNum + currentBalanceNum;
+          var currentBalance = (document.getElementById(
+            "current-balance"
+          ).innerText = total);
 
-        var currentBalance = (document.getElementById(
-          "current-balance"
-        ).innerText = total);
-
-        var withdrawAmount = (document.getElementById("withdrawAmount").value =
-          "");
+          var withdrawAmount = (document.getElementById(
+            "withdrawAmount"
+          ).value = "");
+        }
       });
     </script>
   </body>
